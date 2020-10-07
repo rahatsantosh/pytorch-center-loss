@@ -1,6 +1,7 @@
 import torch
 import torchvision
 from torch.utils.data import DataLoader
+import os
 
 import transforms
 
@@ -22,7 +23,7 @@ class MNIST(object):
 
         trainset = torchvision.datasets.ImageFolder(
             root=veggiedatapath,
-            transform=tf
+            transform=transform
         )
 
         trainloader = torch.utils.data.DataLoader(
@@ -32,7 +33,7 @@ class MNIST(object):
 
         testset = torchvision.datasets.ImageFolder(
             root='/content/drive/My Drive/fellowship/new_test',
-            transform=tf
+            transform=transform
         )
 
         testloader = torch.utils.data.DataLoader(
