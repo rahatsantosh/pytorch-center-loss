@@ -13,7 +13,7 @@ class Identity(nn.Module):
     def forward(self, x):
         return x
 
-class Veggie_model(nn.Module):
+class ConvNet(nn.Module):
     """LeNet++ as described in the Center Loss paper."""
     def __init__(self, num_classes):
         super(ConvNet, self).__init__()
