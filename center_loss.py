@@ -3,10 +3,10 @@ import torch.nn as nn
 
 class CenterLoss(nn.Module):
     """Center loss.
-    
+
     Reference:
     Wen et al. A Discriminative Feature Learning Approach for Deep Face Recognition. ECCV 2016.
-    
+
     Args:
         num_classes (int): number of classes.
         feat_dim (int): feature dimension.
@@ -31,7 +31,7 @@ class CenterLoss(nn.Module):
         batch_size = x.size(0)
         distmat = torch.pow(x, 2).sum(dim=1, keepdim=True).expand(batch_size, self.num_classes) + \
                   torch.pow(self.centers, 2).sum(dim=1, keepdim=True).expand(self.num_classes, batch_size).t()
-        distmat.addmm_(1, -2, x, self.centers.t())
+        distmat.addmm_(x, self.centers.t(), 1, -2)
 
         classes = torch.arange(self.num_classes).long()
         if self.use_gpu: classes = classes.cuda()
